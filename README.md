@@ -28,7 +28,7 @@ The configuration is designed to be easily customizable and extensible, allowing
     ```sh
     cd fargate
     ```
-3. Initialize Terra
+3. Initialize terraform
    ```sh
    terraform init
    ```
