@@ -8,7 +8,7 @@
       "options": {
         "awslogs-region": "${region}",
         "awslogs-stream-prefix": "${environment}-service",
-        "awslogs-group": "awslogs-service-${environment}"
+        "awslogs-group": "/ecs/awslogs-${app_name}-${environment}"
       }
     },
     "portMappings": [
