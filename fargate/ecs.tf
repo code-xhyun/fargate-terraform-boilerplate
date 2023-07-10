@@ -24,9 +24,8 @@ resource "aws_iam_role_policy_attachment" "ecs_task_execution_role" {
 }
 
 
-data "template_file" "service" {
-  template = file(var.tpl_path)
-  vars = {
+locals {
+  service_template = templatefile(var.tpl_path, {
     region             = var.region
     aws_ecr_repository = aws_ecr_repository.repo.repository_url
     tag                = "latest"
@@ -34,7 +33,12 @@ data "template_file" "service" {
     host_port          = var.host_port
     app_name           = var.app_name
     environment        = var.environment
-  }
+  })
+}
+
+resource "local_file" "service" {
+  content  = local.service_template
+  filename = "/path/to/generated/file"
 }
 
 resource "aws_ecs_task_definition" "service" {
